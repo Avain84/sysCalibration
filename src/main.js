@@ -1,9 +1,6 @@
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue-next/dist/bootstrap-vue-next.css';
-import './assets/main.css';
+import './assets/styles/main.css';
 
 import { createApp } from 'vue';
-import { createBootstrap } from 'bootstrap-vue-next';
 import { createPinia } from 'pinia';
 
 // VeeValidate
@@ -33,7 +30,6 @@ setLocale('zh_TW');
 
 const app = createApp(App);
 
-app.use(createBootstrap());
 app.use(createPinia());
 app.use(router);
 
