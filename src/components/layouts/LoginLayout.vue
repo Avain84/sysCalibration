@@ -35,7 +35,20 @@ const isCompany = computed(() => pathname.includes('company'));
         />
       </div>
     </aside>
-    <section class="w-full lg:w-1/2">
+    <section class="w-full min-h-full lg:w-1/2 flex flex-col gap-8 justify-center items-center">
+      <h1 class="text-h2B text-primary-30 lg:hidden">
+          <a
+            href="#"
+            class="flex gap-4 items-center"
+          >
+            <img
+              src="@/assets/imgs/logo/logo-lg.svg"
+              alt="system logo"
+              class="w-12 aspect-square"
+            />
+            設備校驗系統平台
+          </a>
+        </h1>
       <RouterView />
     </section>
   </main>
