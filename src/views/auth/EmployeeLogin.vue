@@ -1,19 +1,39 @@
+<script setup>
+import FormInput from '@/components/FormInput.vue';
+
+const submitEmployeeLogin = (value) => {
+  console.log(value);
+};
+</script>
+
 <template>
-  <div class="min-h-full max-w-3/4 mx-auto flex flex-col gap-12 justify-center items-center">
+  <div class="px-3 w-full sm:w-1/2 mx-auto flex flex-col gap-12 justify-center items-center">
     <header>
-      <h2 class="text-h2B text-center mb-6">
-        廠內職員
-      </h2>
-      <h3 class="text-h3B text-center">
-        專屬系統登入口
-      </h3>
+      <h2 class="text-h2B text-center mb-6">廠內職員</h2>
+      <h3 class="text-h3B text-center">專屬系統登入口</h3>
     </header>
-    <form class="flex flex-col gap-4">
-      <div>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure excepturi ipsam perspiciatis
-        vel tempore nemo officia numquam nulla praesentium quibusdam? Pariatur nisi ab voluptates
-        nemo? A error vero aliquid culpa?
-      </div>
-    </form>
+    <VForm
+      v-slot="{ meta }"
+      @submit="submitEmployeeLogin"
+      class="w-full flex flex-col"
+    >
+      <FormInput
+        name="employeeEmail"
+        label="帳號"
+        type="email"
+        id="employeeEmail"
+        rules="required|email"
+        placeholder="請輸入電子信箱"
+      />
+      <FormInput
+        name="employeePassword"
+        label="密碼"
+        type="password"
+        id="employeePassword"
+        rules="required|min:6|max:10"
+        placeholder="請輸入密碼"
+      />
+      <button type="submit" class="border px-4 py-2" :disabled="!meta.valid">登入</button>
+    </VForm>
   </div>
 </template>
