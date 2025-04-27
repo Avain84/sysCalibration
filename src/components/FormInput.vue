@@ -29,8 +29,12 @@ const isPasswordVisible = ref(false);
       class="block w-full p-2.5 text-sm focus:outline-none border border-black rounded-sm focus:border-primary-30"
     />
     <VErrorMessage
+      v-slot="{ message }"
       :name="name"
+      as="p"
       class="mt-1 pl-3 text-sm text-error-50"
-    />
+    >
+      {{ label + message }}
+    </VErrorMessage>
   </div>
 </template>
