@@ -1,5 +1,7 @@
 <script setup>
 import FormInput from '@/components/FormInput.vue';
+import Button from '@/components/BaseButton.vue';
+import LineDivider from '@/components/LineDivider.vue';
 
 const submitEmployeeLogin = (value) => {
   console.log(value);
@@ -7,7 +9,7 @@ const submitEmployeeLogin = (value) => {
 </script>
 
 <template>
-  <div class="px-3 w-full sm:w-1/2 mx-auto flex flex-col gap-12 justify-center items-center">
+  <div class="px-3 w-full sm:w-1/2 mx-auto flex flex-col gap-8 justify-center items-center">
     <header>
       <h2 class="text-h2B text-center mb-6">廠內職員</h2>
       <h3 class="text-h3B text-center">專屬系統登入口</h3>
@@ -33,7 +35,8 @@ const submitEmployeeLogin = (value) => {
         rules="required|min:6|max:10"
         placeholder="請輸入密碼"
       />
-      <button type="submit" class="border px-4 py-2" :disabled="!meta.valid">登入</button>
+      <Button role="employee" size="lg" :disabled="!meta.valid">登入系統</Button>
     </VForm>
+    <LineDivider>OR</LineDivider>
   </div>
 </template>

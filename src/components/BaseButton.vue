@@ -15,7 +15,7 @@ const sizeStyle = computed(() => {
     case 'md':
       return 'px-8 py-2 text-h6B'
     case 'lg':
-      return 'px-24 py-3 text-h5B'
+      return 'px-16 py-3 text-h5B'
   }
 })
 
@@ -38,6 +38,6 @@ const roleStyle = computed(() => {
     :class="[sizeStyle, roleStyle]"
     :disabled="disabled"
   >
-    <slot />
+    <slot></slot>
   </button>
 </template>
