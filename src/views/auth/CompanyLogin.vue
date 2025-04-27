@@ -1,10 +1,13 @@
 <script setup>
+import { ref } from 'vue';
 import FormInput from '@/components/FormInput.vue';
 import Button from '@/components/BaseButton.vue';
 import LineDivider from '@/components/LineDivider.vue';
 import apiLogin from '@/apis/user/login.js';
 import useAlert from '@/composables/useAlert.js';
 import { setCookie } from '@/utils/cookie.js';
+
+const formRef = ref(null);
 
 const submitLogin = async (value) => {
   try {
@@ -13,6 +16,7 @@ const submitLogin = async (value) => {
     const res = await apiLogin(companyLogin);
     useAlert().showToast(res.message);
     setCookie('token', res.payload.token);
+    formRef.value.resetForm();
   } catch (error) {
     useAlert().error('登入失敗', error.message);
   }
@@ -28,6 +32,7 @@ const submitLogin = async (value) => {
       <h3 class="text-h3B text-center">專屬系統登入口</h3>
     </header>
     <VForm
+      ref="formRef"
       v-slot="{ meta }"
       @submit="submitLogin"
       class="w-full flex flex-col"
