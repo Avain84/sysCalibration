@@ -1,23 +1,32 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+// import HomeView from '../views/HomeView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: HomeView,
+      path: '/login',
+      name: '登入相關',
+      redirect: '/login/company',
+      component: () => import('@/components/layouts/LoginLayout.vue'),
+      children: [
+        {
+          path: 'company',
+          name: '廠商登入頁面',
+          component: () => import('@/views/auth/CompanyLogin.vue'),
+        },{
+          path: 'employee',
+          name: '員工登入頁面',
+          component: () => import('@/views/auth/EmployeeLogin.vue'),
+        },
+      ],
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
+      // 未符合路徑導向廠商登入頁
+      path: '/:pathMatch(.*)*',
+      redirect: '/login/company',
     },
   ],
-})
+});
 
-export default router
+export default router;

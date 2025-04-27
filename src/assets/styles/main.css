@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+@import 'tailwindcss';
+
+* {
+  font-family: 'Noto Sans TC', Arial, Helvetica, sans-serif;
+}
+
+@theme {
+  /* 顏色設定 */
+  --color-primary-10: #00164e;
+  --color-primary-20: #05297a;
+  --color-primary-30: #264191;
+  --color-primary-40: #4059aa;
+  --color-primary-50: #5a73c5;
+  --color-primary-60: #748de1;
+  --color-primary-70: #8fa7fe;
+  --color-primary-80: #b6c4ff;
+  --color-primary-90: #dce1ff;
+  --color-primary-95: #eff0ff;
+  --color-primary-99: #fefbff;
+  --color-secondary-10: #161b2c;
+  --color-secondary-20: #2b3042;
+  --color-secondary-30: #414659;
+  --color-secondary-40: #595d72;
+  --color-secondary-50: #72768b;
+  --color-secondary-60: #8b90a6;
+  --color-secondary-70: #a6aac1;
+  --color-secondary-80: #c1c5dd;
+  --color-secondary-90: #dee1fa;
+  --color-secondary-95: #eff0ff;
+  --color-secondary-99: #fefbff;
+  --color-tertiary-10: #2c122a;
+  --color-tertiary-20: #432740;
+  --color-tertiary-30: #5b3d57;
+  --color-tertiary-40: #755470;
+  --color-tertiary-50: #8f6c89;
+  --color-tertiary-60: #aa85a4;
+  --color-tertiary-70: #c69fbf;
+  --color-tertiary-80: #e3badb;
+  --color-tertiary-90: #ffd7f6;
+  --color-tertiary-95: #ffebf8;
+  --color-tertiary-99: #fffbff;
+  --color-error-10: #410002;
+  --color-error-20: #690005;
+  --color-error-30: #93000a;
+  --color-error-40: #ba1a1a;
+  --color-error-50: #de3730;
+  --color-error-60: #ff5449;
+  --color-error-70: #ff897d;
+  --color-error-80: #ffb4ab;
+  --color-error-90: #ffdad6;
+  --color-error-95: #ffedea;
+  --color-error-99: #fffbff;
+  --color-neutral-10: #1b1b1f;
+  --color-neutral-20: #303034;
+  --color-neutral-30: #47464a;
+  --color-neutral-40: #5e5e62;
+  --color-neutral-50: #77767a;
+  --color-neutral-60: #919094;
+  --color-neutral-70: #acaaaf;
+  --color-neutral-80: #c8c6ca;
+  --color-neutral-90: #e4e1e6;
+  --color-neutral-95: #f2f0f4;
+  --color-neutral-99: #fefbff;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  /* 文字設定 */
+  --regular-line-height: 120%;
+  --regular-letter-spacing-percent: 0.04;
+  --regular-font-weight: 400;
+  --bold-line-height: 120%;
+  --bold-letter-spacing-percent: 0.04;
+  --bold-font-weight: 700;
+
+  /* Regular */
+  --text-h1: 40px;
+  --text-h1--line-height: var(--regular-line-height);
+  --text-h1--letter-spacing: calc(var(--text-h1) * var(--regular-letter-spacing-percent));
+  --text-h1--font-weight: var(--regular-font-weight);
+  
+  --text-h2: 32px;
+  --text-h2--line-height: var(--regular-line-height);
+  --text-h2--letter-spacing: calc(var(--text-h2) * var(--regular-letter-spacing-percent));
+  --text-h2--font-weight: var(--regular-font-weight);
+  
+  --text-h3: 28px;
+  --text-h3--line-height: var(--regular-line-height);
+  --text-h3--letter-spacing: calc(var(--text-h3) * var(--regular-letter-spacing-percent));
+  --text-h3--font-weight: var(--regular-font-weight);
+  
+  --text-h4: 24px;
+  --text-h4--line-height: var(--regular-line-height);
+  --text-h4--letter-spacing: calc(var(--text-h4) * var(--regular-letter-spacing-percent));
+  --text-h4--font-weight: var(--regular-font-weight);
+  
+  --text-h5: 20px;
+  --text-h5--line-height: var(--regular-line-height);
+  --text-h5--letter-spacing: calc(var(--text-h5) * var(--regular-letter-spacing-percent));
+  --text-h5--font-weight: var(--regular-font-weight);
+  
+  --text-h6: 16px;
+  --text-h6--line-height: var(--regular-line-height);
+  --text-h6--letter-spacing: calc(var(--text-h6) * var(--regular-letter-spacing-percent));
+  --text-h6--font-weight: var(--regular-font-weight);
+  
+  --text-sm: 14px;
+  --text-sm--line-height: var(--regular-line-height);
+  --text-sm--letter-spacing: calc(var(--text-sm) * var(--regular-letter-spacing-percent));
+  --text-sm--font-weight: var(--regular-font-weight);
+
+  /* Bold */
+  --text-h1B: 40px;
+  --text-h1B--line-height: var(--bold-line-height);
+  --text-h1B--letter-spacing: calc(var(--text-h1B) * var(--bold-letter-spacing-percent));
+  --text-h1B--font-weight: var(--bold-font-weight);
+  
+  --text-h2B: 32px;
+  --text-h2B--line-height: var(--bold-line-height);
+  --text-h2B--letter-spacing: calc(var(--text-h2B) * var(--bold-letter-spacing-percent));
+  --text-h2B--font-weight: var(--bold-font-weight);
+  
+  --text-h3B: 28px;
+  --text-h3B--line-height: var(--bold-line-height);
+  --text-h3B--letter-spacing: calc(var(--text-h3B) * var(--bold-letter-spacing-percent));
+  --text-h3B--font-weight: var(--bold-font-weight);
+  
+  --text-h4B: 24px;
+  --text-h4B--line-height: var(--bold-line-height);
+  --text-h4B--letter-spacing: calc(var(--text-h4B) * var(--bold-letter-spacing-percent));
+  --text-h4B--font-weight: var(--bold-font-weight);
+  
+  --text-h5B: 20px;
+  --text-h5B--line-height: var(--bold-line-height);
+  --text-h5B--letter-spacing: calc(var(--text-h5B) * var(--bold-letter-spacing-percent));
+  --text-h5B--font-weight: var(--bold-font-weight);
+  
+  --text-h6B: 16px;
+  --text-h6B--line-height: var(--bold-line-height);
+  --text-h6B--letter-spacing: calc(var(--text-h6B) * var(--bold-letter-spacing-percent));
+  --text-h6B--font-weight: var(--bold-font-weight);
+  
+  --text-smB: 14px;
+  --text-smB--line-height: var(--bold-line-height);
+  --text-smB--letter-spacing: calc(var(--text-smB) * var(--bold-letter-spacing-percent));
+  --text-smB--font-weight: var(--bold-font-weight);
+}

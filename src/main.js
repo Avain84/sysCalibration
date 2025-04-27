@@ -1,9 +1,6 @@
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue-next/dist/bootstrap-vue-next.css';
-import './assets/main.css';
+import './assets/styles/main.css';
 
 import { createApp } from 'vue';
-import { createBootstrap } from 'bootstrap-vue-next';
 import { createPinia } from 'pinia';
 
 // VeeValidate
@@ -25,21 +22,30 @@ Object.keys(rules).forEach((rule) => {
   }
 });
 
+// 客製化 vee-validate error message 文字
 configure({
-  generateMessage: localize({ zh_TW: zhTW }),
+  generateMessage: localize({ zh_TW: {
+    zhTW,
+    messages: {
+      _default: '格式不符，請重新填寫',
+      required: '此欄位不可為空',
+      email: '請輸入符合規範的 Email 格式',
+      min: '必須輸入至少 0:{min} 碼',
+      max: '必須輸入少於 0:{max} 碼',
+    },
+  }}),
   validateOnInput: true,
 });
 setLocale('zh_TW');
 
 const app = createApp(App);
 
-app.use(createBootstrap());
 app.use(createPinia());
 app.use(router);
 
 // VeeValidate 標籤設定
 app.component('VField', Field);
 app.component('VForm', Form);
-app.component('ErrorMessage', ErrorMessage);
+app.component('VErrorMessage', ErrorMessage);
 
 app.mount('#app');
