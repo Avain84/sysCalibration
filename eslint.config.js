@@ -32,7 +32,7 @@ export default defineConfig([
         html: { 
           void: 'always',
           normal: 'never',
-          void: 'always',
+          component: 'always',
         },
         svg: 'always',
         math: 'always',

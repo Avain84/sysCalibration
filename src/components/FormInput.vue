@@ -13,7 +13,7 @@ const isPasswordVisible = ref(false);
 </script>
 
 <template>
-  <div class="mb-3 min-h-[90px]">
+  <div class="mb-2 min-h-[90px]">
     <label
       :for="id"
       class="block mb-2 text-h6 text-black"
