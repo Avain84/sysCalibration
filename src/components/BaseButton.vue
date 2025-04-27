@@ -11,11 +11,11 @@ const props = defineProps({
 const sizeStyle = computed(() => {
   switch (props.size) {
     case 'sm':
-      return 'px-7 py-2 text-smB'
+      return 'px-4 py-2 text-smB'
     case 'md':
-      return 'px-8 py-2 text-h6B'
+      return 'px-6 py-2 md:px-8 text-smB'
     case 'lg':
-      return 'px-16 py-3 text-h5B'
+      return 'px-12 py-3 md:px-16 text-h6B'
   }
 })
 

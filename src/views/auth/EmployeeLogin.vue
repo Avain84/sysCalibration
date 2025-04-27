@@ -3,7 +3,7 @@ import FormInput from '@/components/FormInput.vue';
 import Button from '@/components/BaseButton.vue';
 import LineDivider from '@/components/LineDivider.vue';
 
-const submitEmployeeLogin = (value) => {
+const submitLogin = (value) => {
   console.log(value);
 };
 </script>
@@ -16,7 +16,7 @@ const submitEmployeeLogin = (value) => {
     </header>
     <VForm
       v-slot="{ meta }"
-      @submit="submitEmployeeLogin"
+      @submit="submitLogin"
       class="w-full flex flex-col"
     >
       <FormInput
@@ -37,6 +37,5 @@ const submitEmployeeLogin = (value) => {
       />
       <Button role="employee" size="lg" :disabled="!meta.valid">登入系統</Button>
     </VForm>
-    <LineDivider>OR</LineDivider>
   </div>
 </template>
