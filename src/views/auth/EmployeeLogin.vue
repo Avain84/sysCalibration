@@ -3,15 +3,16 @@ import FormInput from '@/components/FormInput.vue';
 import Button from '@/components/BaseButton.vue';
 import LineDivider from '@/components/LineDivider.vue';
 import apiLogin from '@/apis/user/login.js';
-import useAlert from '@/composables/useAlert';
+import useAlert from '@/composables/useAlert.js';
+import { setCookie } from '@/utils/cookie.js';
 
 const submitLogin = async (value) => {
   try {
     const employeeLogin = { role: 'employee', ...value };
-    
+
     const res = await apiLogin(employeeLogin);
-    // console.log(res);
     useAlert().showToast(res.message);
+    setCookie('token', res.payload.token);
   } catch (error) {
     useAlert().error('登入失敗', error.message);
   }
