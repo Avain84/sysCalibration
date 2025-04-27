@@ -23,7 +23,7 @@ instance.interceptors.response.use(
   (error) => {
     // HTTP錯誤
     return Promise.reject(error);
-  }
+  },
 );
 
 export default instance;

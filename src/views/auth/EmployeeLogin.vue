@@ -3,15 +3,17 @@ import FormInput from '@/components/FormInput.vue';
 import Button from '@/components/BaseButton.vue';
 import LineDivider from '@/components/LineDivider.vue';
 import apiLogin from '@/apis/user/login.js';
+import useAlert from '@/composables/useAlert';
 
 const submitLogin = async (value) => {
   try {
     const employeeLogin = { role: 'employee', ...value };
     
     const res = await apiLogin(employeeLogin);
-    console.log(res.data.payload);
+    // console.log(res);
+    useAlert().showToast(res.message);
   } catch (error) {
-    console.log(error.message);
+    useAlert().error('登入失敗', error.message);
   }
 };
 </script>
