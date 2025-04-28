@@ -10,10 +10,13 @@ defineProps({
 
 import { ref } from 'vue';
 const isPasswordVisible = ref(false);
+const togglePassword = () => {
+  isPasswordVisible.value = !isPasswordVisible.value;
+};
 </script>
 
 <template>
-  <div class="mb-2 min-h-[90px]">
+  <div class="mb-2 min-h-[90px] relative">
     <label
       :for="id"
       class="block mb-2 text-h6 text-black"
@@ -28,6 +31,23 @@ const isPasswordVisible = ref(false);
       :placeholder="placeholder"
       class="block w-full p-2.5 text-sm focus:outline-none border border-black rounded-sm focus:border-primary-30"
     />
+    <button
+      v-if="type === 'password'"
+      type="button"
+      class="w-6 aspect-square absolute right-2.5 top-9 text-gray-400 hover:text-gray-700"
+      @click="togglePassword"
+    >
+      <img
+        v-if="isPasswordVisible"
+        src="/src/assets/icons/eye-close.svg"
+        alt="password hidden"
+      />
+      <img
+        v-else
+        src="/src/assets/icons/eye-open.svg"
+        alt="password show"
+      />
+    </button>
     <VErrorMessage
       v-slot="{ message }"
       :name="name"
