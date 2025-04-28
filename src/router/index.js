@@ -1,8 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 // import HomeView from '../views/HomeView.vue';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/login',
@@ -14,7 +14,8 @@ const router = createRouter({
           path: 'company',
           name: '廠商登入頁面',
           component: () => import('@/views/auth/CompanyLogin.vue'),
-        },{
+        },
+        {
           path: 'employee',
           name: '員工登入頁面',
           component: () => import('@/views/auth/EmployeeLogin.vue'),
