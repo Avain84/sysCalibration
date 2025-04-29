@@ -25,9 +25,7 @@ const submitLogin = async (value) => {
 </script>
 
 <template>
-  <div
-    class="px-3 w-full sm:w-2/3 md:w-1/2 lg:w-2/3 mx-auto flex flex-col gap-8 justify-center items-center"
-  >
+  <div class="px-3 w-full sm:w-2/3 md:w-1/2 lg:w-2/3 mx-auto flex flex-col gap-8 justify-center">
     <header>
       <h2 class="text-h2B text-center mb-6">校驗廠商</h2>
       <h3 class="text-h3B text-center">專屬系統登入口</h3>
