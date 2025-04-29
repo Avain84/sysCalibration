@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
-import FormInput from '@/components/FormInput.vue';
-import Button from '@/components/BaseButton.vue';
+import FormInput from '@/components/inputs/FormInput.vue';
+import Button from '@/components/buttons/BaseButton.vue';
 import LineDivider from '@/components/LineDivider.vue';
 import GoogleLogin from '@/views/auth/GoogleLogin.vue';
 import apiLogin from '@/apis/user/login.js';
