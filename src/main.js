@@ -3,6 +3,9 @@ import './assets/styles/main.css';
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 
+// 引入第三方登入套件
+import vue3GoogleLogin from 'vue3-google-login';
+
 // VeeValidate
 import { Field, Form, ErrorMessage, defineRule, configure } from 'vee-validate';
 import * as rules from '@vee-validate/rules';
@@ -42,6 +45,11 @@ const app = createApp(App);
 
 app.use(createPinia());
 app.use(router);
+
+// 第三方登入
+app.use(vue3GoogleLogin, {
+  clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+});
 
 // VeeValidate 標籤設定
 app.component('VField', Field);

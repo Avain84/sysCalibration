@@ -28,15 +28,25 @@ export default defineConfig([
       'arrow-parens': ['error', 'always'],
       'no-unused-vars': ['warn'],
       'no-console': ['warn'],
-      'vue/html-self-closing': ['error', {
-        html: { 
-          void: 'always',
-          normal: 'never',
-          component: 'always',
+      'vue/html-self-closing': [
+        'error',
+        {
+          html: {
+            void: 'always',
+            normal: 'never',
+            component: 'always',
+          },
+          svg: 'always',
+          math: 'always',
         },
-        svg: 'always',
-        math: 'always',
-      }],
+      ],
+      'vue/html-closing-bracket-newline': [
+        'error',
+        {
+          singleline: 'never',
+          multiline: 'never',
+        },
+      ],
     },
   },
 
