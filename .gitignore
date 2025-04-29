@@ -1,3 +1,5 @@
+.env
+
 # 部署腳本
 deploy.sh
 

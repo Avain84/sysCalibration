@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
-import FormInput from '@/components/FormInput.vue';
-import Button from '@/components/BaseButton.vue';
+import FormInput from '@/components/inputs/FormInput.vue';
+import Button from '@/components/buttons/BaseButton.vue';
 import apiLogin from '@/apis/user/login.js';
 import useAlert from '@/composables/useAlert.js';
 import { setCookie } from '@/utils/cookie.js';
