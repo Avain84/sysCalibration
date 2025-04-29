@@ -43,8 +43,8 @@ export default defineConfig([
       'vue/html-closing-bracket-newline': [
         'error',
         {
-          singleline: 'never',
-          multiline: 'never',
+          singleline: 'off',
+          multiline: 'off',
         },
       ],
     },
