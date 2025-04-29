@@ -5,7 +5,7 @@ const users = {
   'employee01@test.com': { role: 'employee', username: '員工一', password: 'e01e01' },
   'employee02@test.com': { role: 'employee', username: '員工二', password: 'e02e02' },
   'company01@test.com': { role: 'company', username: '廠商一', password: 'c01c01' },
-  'company02@test.com': { role: 'company', username: '廠商二', password: 'c02c03' },
+  'company02@test.com': { role: 'company', username: '廠商二', password: 'c02c02' },
   'company03@test.com': { role: 'company', username: '廠商三', password: 'c02c03' },
 };
 
@@ -27,8 +27,7 @@ function login(req) {
       success: false,
       message: '身分錯誤，請到對應身分頁面登入',
     };
-  }
-  else {
+  } else {
     const token = Random.guid();
     return {
       success: true,
