@@ -36,7 +36,11 @@ const callback = (response) => {
 
 <template>
   <GoogleLogin :callback="callback">
-    <IconButton size="full">
+    <IconButton
+      size="full"
+      rounded="full"
+      :filled="false"
+    >
       <span>Google 登入</span>
       <img
         src="@/assets/icons/google.svg"
