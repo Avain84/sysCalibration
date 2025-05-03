@@ -1,12 +1,17 @@
 <script setup>
 import { ref } from 'vue';
+import { useProfileStore } from '@/stores/userProfile.js';
+import useAlert from '@/composables/useAlert.js';
+import useNavigation  from '@/composables/useNavigation.js';
+import apiLogin from '@/apis/user/login.js';
+import { setCookie } from '@/utils/cookie.js';
 import FormInput from '@/components/inputs/FormInput.vue';
 import Button from '@/components/buttons/BaseButton.vue';
 import LineDivider from '@/components/LineDivider.vue';
 import GoogleLogin from '@/views/auth/GoogleLogin.vue';
-import apiLogin from '@/apis/user/login.js';
-import useAlert from '@/composables/useAlert.js';
-import { setCookie } from '@/utils/cookie.js';
+
+const useProfile = useProfileStore();
+const { goToRoute } = useNavigation ();
 
 const formRef = ref(null);
 
@@ -15,9 +20,13 @@ const submitLogin = async (value) => {
     const companyLogin = { role: 'company', ...value };
 
     const res = await apiLogin(companyLogin);
+
     useAlert().showToast(res.message);
     setCookie('token', res.payload.token);
+    useProfile.setProfile(res.payload);
     formRef.value.resetForm();
+    
+    goToRoute('hasLoginView');
   } catch (error) {
     useAlert().error('登入失敗', error.message);
   }

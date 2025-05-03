@@ -1,16 +1,25 @@
 <script setup>
-import IconButton from '@/components/buttons/IconButton.vue';
-import apiLogin from '@/apis/user/login.js';
+import { useProfileStore } from '@/stores/userProfile.js';
 import useAlert from '@/composables/useAlert.js';
+import useNavigation  from '@/composables/useNavigation.js';
+import apiLogin from '@/apis/user/login.js';
 import { setCookie } from '@/utils/cookie.js';
+import IconButton from '@/components/buttons/IconButton.vue';
+
+const useProfile = useProfileStore();
+const { goToRoute } = useNavigation ();
 
 const submitLogin = async (value) => {
   try {
     const companyLogin = { role: 'company', ...value };
 
     const res = await apiLogin(companyLogin);
+
     useAlert().showToast(res.message);
     setCookie('token', res.payload.token);
+    useProfile.setProfile(res.payload);
+
+    goToRoute('hasLoginView');
   } catch (error) {
     useAlert().error('登入失敗', error.message);
   }
@@ -36,7 +45,11 @@ const callback = (response) => {
 
 <template>
   <GoogleLogin :callback="callback">
-    <IconButton size="full">
+    <IconButton
+      size="full"
+      rounded="full"
+      :filled="false"
+    >
       <span>Google 登入</span>
       <img
         src="@/assets/icons/google.svg"

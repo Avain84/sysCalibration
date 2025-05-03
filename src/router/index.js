@@ -6,21 +6,34 @@ const router = createRouter({
   routes: [
     {
       path: '/login',
-      name: '登入相關',
+      name: 'loginViews',
       redirect: '/login/company',
       component: () => import('@/components/layouts/LoginLayout.vue'),
       children: [
         {
           path: 'company',
-          name: '廠商登入頁面',
+          name: 'companyLogin',
           component: () => import('@/views/auth/CompanyLogin.vue'),
         },
         {
           path: 'employee',
-          name: '員工登入頁面',
+          name: 'employeeLogin',
           component: () => import('@/views/auth/EmployeeLogin.vue'),
         },
       ],
+    },
+    {
+      path: '/',
+      name: 'hasLoginView',
+      // redirect: '/dashboard',
+      component: () => import('@/components/layouts/SidebarWithNavbar.vue'),
+      // children: [
+      //   {
+      //     path: 'dashboard',
+      //     name: '儀錶板',
+      //     component: () => import('@/views/Dashboard.vue'),
+      //   },
+      // ],
     },
     {
       // 未符合路徑導向廠商登入頁
