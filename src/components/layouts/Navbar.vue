@@ -1,6 +1,9 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
+import { useProfileStore } from '@/stores/userProfile.js';
 import IconButton from '@/components/buttons/IconButton.vue';
+
+const useProfile = useProfileStore();
 
 const isSidebarOpen = ref(false);
 const isUserDropdownOpen = ref(false);
@@ -23,6 +26,8 @@ const handleClickOutside = (e) => {
   }
 };
 
+const isEmployee = computed(() => useProfile.userProfile.role === 'employee');
+
 // 監聽點擊事件
 onMounted(() => {
   document.addEventListener('click', handleClickOutside);
@@ -43,24 +48,24 @@ onBeforeUnmount(() => {
       class="cursor-pointer mr-4 xl:hidden relative w-8 h-8 flex flex-col justify-between items-center p-1 group"
     >
       <span
+        class="block rounded-full h-1 w-full transform transition duration-300"
         :class="[
-          'block rounded-full h-1 w-full bg-neutral-80 transform transition duration-300',
+          isEmployee ? 'bg-primary-40 group-hover:bg-primary-60' : 'bg-tertiary-40 group-hover:bg-tertiary-60',
           { 'rotate-45 translate-y-2.5': isSidebarOpen },
-          'group-hover:bg-primary-30',
         ]"
       ></span>
       <span
+      class="block rounded-full h-1 w-full transition duration-300"
         :class="[
-          'block rounded-full h-1 w-full bg-neutral-80 transition duration-300',
+          isEmployee ? 'bg-primary-40 group-hover:bg-primary-60' : 'bg-tertiary-40 group-hover:bg-tertiary-60',
           { 'opacity-0': isSidebarOpen },
-          'group-hover:bg-primary-30',
         ]"
       ></span>
       <span
+      class="block rounded-full h-1 w-full transform transition duration-300"
         :class="[
-          'block rounded-full h-1 w-full bg-neutral-80 transform transition duration-300',
+          isEmployee ? 'bg-primary-40 group-hover:bg-primary-60' : 'bg-tertiary-40 group-hover:bg-tertiary-60',
           { '-rotate-45 -translate-y-2.5': isSidebarOpen },
-          'group-hover:bg-primary-30',
         ]"
       ></span>
     </button>
@@ -85,10 +90,10 @@ onBeforeUnmount(() => {
       <IconButton
         type="button"
         size="sm"
-        :role="'employee'"
+        :role="useProfile.userProfile.role"
         rounded="full"
       >
-        <span>使用者名稱</span>
+        <span>{{ useProfile.userProfile.username }}</span>
         <img
           src="@/assets/icons/filled-arrow-white.svg"
           alt="arrow"
@@ -97,12 +102,18 @@ onBeforeUnmount(() => {
       </IconButton>
       <ul
         v-if="isUserDropdownOpen"
-        class="absolute right-4 mt-2 bg-white shadow-md rounded-md border border-neutral-80 overflow-hidden"
+        class="absolute w-32 right-1/6 mt-2 bg-white shadow-md rounded-md border border-neutral-80 overflow-hidden"
       >
-        <li class="px-4 py-2 hover:bg-primary-30 hover:text-white">
+        <li
+          class="px-4 py-2 hover:text-white"
+          :class="[isEmployee ? 'hover:bg-primary-30' : 'hover:bg-tertiary-30' ]"
+        >
           <a href="#">個人資料</a>
         </li>
-        <li class="px-4 py-2 hover:bg-primary-30 hover:text-white">
+        <li
+          class="px-4 py-2 hover:bg-primary-30 hover:text-white"
+          :class="[isEmployee ? 'hover:bg-primary-30' : 'hover:bg-tertiary-30' ]"
+        >
           <a href="#">登出</a>
         </li>
       </ul>
