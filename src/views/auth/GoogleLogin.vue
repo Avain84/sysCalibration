@@ -1,16 +1,21 @@
 <script setup>
-import IconButton from '@/components/buttons/IconButton.vue';
-import apiLogin from '@/apis/user/login.js';
+import { useProfileStore } from '@/stores/userProfile.js'
 import useAlert from '@/composables/useAlert.js';
+import apiLogin from '@/apis/user/login.js';
 import { setCookie } from '@/utils/cookie.js';
+import IconButton from '@/components/buttons/IconButton.vue';
+
+const useProfile = useProfileStore();
 
 const submitLogin = async (value) => {
   try {
     const companyLogin = { role: 'company', ...value };
 
     const res = await apiLogin(companyLogin);
+
     useAlert().showToast(res.message);
     setCookie('token', res.payload.token);
+    useProfile.setProfile(res.payload);
   } catch (error) {
     useAlert().error('登入失敗', error.message);
   }

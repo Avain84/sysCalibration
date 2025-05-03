@@ -41,9 +41,9 @@ const filledStyle = computed(() => {
   const shadowColor = `${color}-80/50`;
 
   if (props.filled) {
-    return `bg-${baseColor} text-white border-${baseColor}`
+    return `bg-${baseColor} text-white border-${baseColor}`;
   } else {
-    return `bg-transparent text-${baseColor} border-${baseColor} hover:shadow-md shadow-${shadowColor}`
+    return `bg-transparent text-${baseColor} border-${baseColor} hover:shadow-md shadow-${shadowColor}`;
   }
 
 });
