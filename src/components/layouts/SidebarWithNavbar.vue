@@ -1,8 +1,19 @@
 <script setup>
-import Header from '@/components/layouts/Navbar.vue';
+import { ref } from 'vue';
+import Navbar from '@/components/layouts/Navbar.vue';
+
+const isSidebarOpen = ref(false);
+const toggleSidebar = () => {
+  isSidebarOpen.value = !isSidebarOpen.value;
+  console.log(isSidebarOpen.value);
+};
 </script>
 
 <template>
-  <Header />
+  <Navbar
+    :is-sidebar-open="isSidebarOpen"
+    @toggle-sidebar="toggleSidebar"
+  />
+  <!-- <Sidebar /> -->
   <!-- <RouterView /> -->
 </template>
