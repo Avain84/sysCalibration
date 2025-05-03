@@ -23,6 +23,19 @@ const router = createRouter({
       ],
     },
     {
+      path: '/',
+      name: '頁首與側邊選單',
+      // redirect: '/dashboard',
+      component: () => import('@/components/layouts/SidebarWithNavbar.vue'),
+      // children: [
+      //   {
+      //     path: 'dashboard',
+      //     name: '儀錶板',
+      //     component: () => import('@/views/Dashboard.vue'),
+      //   },
+      // ],
+    },
+    {
       // 未符合路徑導向廠商登入頁
       path: '/:pathMatch(.*)*',
       redirect: '/login/company',

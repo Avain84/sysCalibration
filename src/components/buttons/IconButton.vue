@@ -12,9 +12,9 @@ const props = defineProps({
 const sizeStyle = computed(() => {
   switch (props.size) {
     case 'full':
-      return 'w-full gap-2';
+      return 'py-2 w-full gap-2';
     case 'sm':
-      return 'px-4 gap-1';
+      return 'px-4 py-1 gap-1';
   }
 });
 
@@ -52,7 +52,7 @@ const filledStyle = computed(() => {
 <template>
   <button
     :type="type"
-    class="py-2 cursor-pointer text-base border flex justify-center items-center focus:outline-none"
+    class="cursor-pointer text-base border flex justify-center items-center focus:outline-none"
     :class="[sizeStyle, roundedStyle, filledStyle]"
   >
     <slot />
