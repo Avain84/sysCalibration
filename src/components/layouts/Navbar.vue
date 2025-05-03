@@ -1,11 +1,37 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import IconButton from '@/components/buttons/IconButton.vue';
 
-const isOpen = ref(false);
+const isSidebarOpen = ref(false);
+const isUserDropdownOpen = ref(false);
+const userDropdownRef = ref(null);
+
+// 側邊選單按鈕顯示切換
 const sidebarToggle = () => {
-  isOpen.value = !isOpen.value;
+  isSidebarOpen.value = !isSidebarOpen.value;
 };
+
+// 使用者選單顯示切換
+const userDropdownToggle = () => {
+  isUserDropdownOpen.value = !isUserDropdownOpen.value;
+};
+
+// 點擊其他地方關閉使用者選單
+const handleClickOutside = (e) => {
+  if (userDropdownRef.value && !userDropdownRef.value.contains(e.target)) {
+    isUserDropdownOpen.value = false;
+  }
+};
+
+// 監聽點擊事件
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside);
+});
+
+// 解除監聽
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside);
+});
 </script>
 
 <template>
@@ -14,26 +40,26 @@ const sidebarToggle = () => {
   >
     <button
       @click="sidebarToggle"
-      class="mr-4 xl:hidden relative w-8 h-8 flex flex-col justify-between items-center p-1 group"
+      class="cursor-pointer mr-4 xl:hidden relative w-8 h-8 flex flex-col justify-between items-center p-1 group"
     >
       <span
         :class="[
           'block rounded-full h-1 w-full bg-neutral-80 transform transition duration-300',
-          { 'rotate-45 translate-y-2.5': isOpen },
+          { 'rotate-45 translate-y-2.5': isSidebarOpen },
           'group-hover:bg-primary-30',
         ]"
       ></span>
       <span
         :class="[
           'block rounded-full h-1 w-full bg-neutral-80 transition duration-300',
-          { 'opacity-0': isOpen },
+          { 'opacity-0': isSidebarOpen },
           'group-hover:bg-primary-30',
         ]"
       ></span>
       <span
         :class="[
           'block rounded-full h-1 w-full bg-neutral-80 transform transition duration-300',
-          { '-rotate-45 -translate-y-2.5': isOpen },
+          { '-rotate-45 -translate-y-2.5': isSidebarOpen },
           'group-hover:bg-primary-30',
         ]"
       ></span>
@@ -51,19 +77,35 @@ const sidebarToggle = () => {
         <span class="hidden sm:block">設備校驗系統平台</span>
       </a>
     </h1>
-
-    <IconButton
-      type="button"
-      size="sm"
-      :role="'employee'"
-      rounded="full"
+    <div
+      ref="userDropdownRef"
+      class="relative"
+      @click="userDropdownToggle"
     >
-      <span>使用者名稱</span>
-      <img
-        src="@/assets/icons/filled-arrow-white.svg"
-        alt="arrow"
-        class="w-2.5 aspect-square"
-      />
-    </IconButton>
+      <IconButton
+        type="button"
+        size="sm"
+        :role="'employee'"
+        rounded="full"
+      >
+        <span>使用者名稱</span>
+        <img
+          src="@/assets/icons/filled-arrow-white.svg"
+          alt="arrow"
+          class="w-2.5 aspect-square"
+        />
+      </IconButton>
+      <ul
+        v-if="isUserDropdownOpen"
+        class="absolute right-4 mt-2 bg-white shadow-md rounded-md border border-neutral-80 overflow-hidden"
+      >
+        <li class="px-4 py-2 hover:bg-primary-30 hover:text-white">
+          <a href="#">個人資料</a>
+        </li>
+        <li class="px-4 py-2 hover:bg-primary-30 hover:text-white">
+          <a href="#">登出</a>
+        </li>
+      </ul>
+    </div>
   </header>
 </template>
