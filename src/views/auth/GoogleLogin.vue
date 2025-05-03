@@ -1,11 +1,13 @@
 <script setup>
-import { useProfileStore } from '@/stores/userProfile.js'
+import { useProfileStore } from '@/stores/userProfile.js';
 import useAlert from '@/composables/useAlert.js';
+import useNavigation  from '@/composables/useNavigation.js';
 import apiLogin from '@/apis/user/login.js';
 import { setCookie } from '@/utils/cookie.js';
 import IconButton from '@/components/buttons/IconButton.vue';
 
 const useProfile = useProfileStore();
+const { goToRoute } = useNavigation ();
 
 const submitLogin = async (value) => {
   try {
@@ -16,6 +18,8 @@ const submitLogin = async (value) => {
     useAlert().showToast(res.message);
     setCookie('token', res.payload.token);
     useProfile.setProfile(res.payload);
+
+    goToRoute('hasLoginView');
   } catch (error) {
     useAlert().error('登入失敗', error.message);
   }
