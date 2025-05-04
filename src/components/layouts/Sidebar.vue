@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRoute } from 'vue-router';
+
+const route = useRoute();
 
 const props = defineProps({
   isSidebarOpen: Boolean,
@@ -75,6 +77,9 @@ const isOpen = (name) => openMenus.value === name;
           <RouterLink
             :to="link.path"
             class="text-lg w-full pl-4 border-l-4 border-transparent hover:border-primary-60"
+            :class="{
+              'text-primary-60 !border-primary-60 font-bold': route.path === link.path,
+            }"
           >
             {{ link.name }}
           </RouterLink>

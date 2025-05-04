@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import { RouterView } from 'vue-router';
 import useAlert from '@/composables/useAlert.js';
 import useNavigation from '@/composables/useNavigation';
 import { getCookie } from '@/utils/cookie.js';
@@ -41,5 +42,5 @@ onMounted(() => {
     @toggle-sidebar="toggleSidebar"
   />
   <Sidebar :is-sidebar-open="isSidebarOpen" />
-  <!-- <RouterView /> -->
+  <RouterView />
 </template>
