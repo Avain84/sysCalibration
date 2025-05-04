@@ -9,9 +9,16 @@ import Sidebar from '@/components/layouts/Sidebar.vue';
 const { goToRoute } = useNavigation ();
 
 const isSidebarOpen = ref(false);
+
+// 控制側邊選單顯示切換
 const toggleSidebar = () => {
   isSidebarOpen.value = !isSidebarOpen.value;
 };
+
+// 監聽螢幕寬度變化
+const handleResize = () => {
+  isSidebarOpen.value = window.innerWidth >= 1280
+}
 
 onMounted(() => {
   const token = getCookie('token');
@@ -20,6 +27,11 @@ onMounted(() => {
     useAlert().error('登入過期', '請重新登入');
     goToRoute('companyLogin');
   }
+
+  handleResize()
+
+  // 畫面寬度監聽器
+  window.addEventListener('resize', handleResize)
 });
 </script>
 
@@ -28,6 +40,6 @@ onMounted(() => {
     :is-sidebar-open="isSidebarOpen"
     @toggle-sidebar="toggleSidebar"
   />
-  <Sidebar />
+  <Sidebar :is-sidebar-open="isSidebarOpen" />
   <!-- <RouterView /> -->
 </template>

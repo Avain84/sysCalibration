@@ -2,6 +2,10 @@
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
+const props = defineProps({
+  isSidebarOpen: Boolean,
+});
+
 const links = [
   { name: '儀錶板', path: '/dashboard' },
   { name: '校驗商管理', path: '/company-management' },
@@ -28,7 +32,10 @@ const isOpen = (name) => openMenus.value === name;
 </script>
 
 <template>
-  <aside class="fixed top-15 left-0 w-full xl:w-1/4 min-h-full shadow-lg">
+  <aside
+    class="top-15 left-0 w-full xl:w-1/4 min-h-full shadow-lg"
+    :class="isSidebarOpen ? 'fixed' : 'hidden'"
+  >
     <ul class="p-4">
       <li
         v-for="link in links"
