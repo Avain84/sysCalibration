@@ -29,6 +29,8 @@ function login(req) {
     };
   } else {
     const token = Random.guid();
+    users[account].token = token;
+
     return {
       success: true,
       message: '登入成功',
@@ -40,6 +42,7 @@ function login(req) {
     };
   }
 }
+
 
 export default {
   login,

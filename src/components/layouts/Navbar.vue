@@ -3,16 +3,15 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useProfileStore } from '@/stores/userProfile.js';
 import IconButton from '@/components/buttons/IconButton.vue';
 
+defineProps({
+  isSidebarOpen: Boolean,
+});
+defineEmits(['toggleSidebar']);
+
 const useProfile = useProfileStore();
 
-const isSidebarOpen = ref(false);
 const isUserDropdownOpen = ref(false);
 const userDropdownRef = ref(null);
-
-// 側邊選單按鈕顯示切換
-const sidebarToggle = () => {
-  isSidebarOpen.value = !isSidebarOpen.value;
-};
 
 // 使用者選單顯示切換
 const userDropdownToggle = () => {
@@ -44,27 +43,33 @@ onBeforeUnmount(() => {
     class="fixed top-0 left-0 w-full h-15 shadow-md px-4 py-1.5 flex justify-center items-center"
   >
     <button
-      @click="sidebarToggle"
+      @click="$emit('toggleSidebar')"
       class="cursor-pointer mr-4 xl:hidden relative w-8 h-8 flex flex-col justify-between items-center p-1 group"
     >
       <span
         class="block rounded-full h-1 w-full transform transition duration-300"
         :class="[
-          isEmployee ? 'bg-primary-40 group-hover:bg-primary-60' : 'bg-tertiary-40 group-hover:bg-tertiary-60',
+          isEmployee
+            ? 'bg-primary-40 group-hover:bg-primary-60'
+            : 'bg-tertiary-40 group-hover:bg-tertiary-60',
           { 'rotate-45 translate-y-2.5': isSidebarOpen },
         ]"
       ></span>
       <span
-      class="block rounded-full h-1 w-full transition duration-300"
+        class="block rounded-full h-1 w-full transition duration-300"
         :class="[
-          isEmployee ? 'bg-primary-40 group-hover:bg-primary-60' : 'bg-tertiary-40 group-hover:bg-tertiary-60',
+          isEmployee
+            ? 'bg-primary-40 group-hover:bg-primary-60'
+            : 'bg-tertiary-40 group-hover:bg-tertiary-60',
           { 'opacity-0': isSidebarOpen },
         ]"
       ></span>
       <span
-      class="block rounded-full h-1 w-full transform transition duration-300"
+        class="block rounded-full h-1 w-full transform transition duration-300"
         :class="[
-          isEmployee ? 'bg-primary-40 group-hover:bg-primary-60' : 'bg-tertiary-40 group-hover:bg-tertiary-60',
+          isEmployee
+            ? 'bg-primary-40 group-hover:bg-primary-60'
+            : 'bg-tertiary-40 group-hover:bg-tertiary-60',
           { '-rotate-45 -translate-y-2.5': isSidebarOpen },
         ]"
       ></span>
@@ -106,13 +111,13 @@ onBeforeUnmount(() => {
       >
         <li
           class="px-4 py-2 hover:text-white"
-          :class="[isEmployee ? 'hover:bg-primary-30' : 'hover:bg-tertiary-30' ]"
+          :class="[isEmployee ? 'hover:bg-primary-30' : 'hover:bg-tertiary-30']"
         >
           <a href="#">個人資料</a>
         </li>
         <li
           class="px-4 py-2 hover:bg-primary-30 hover:text-white"
-          :class="[isEmployee ? 'hover:bg-primary-30' : 'hover:bg-tertiary-30' ]"
+          :class="[isEmployee ? 'hover:bg-primary-30' : 'hover:bg-tertiary-30']"
         >
           <a href="#">登出</a>
         </li>
