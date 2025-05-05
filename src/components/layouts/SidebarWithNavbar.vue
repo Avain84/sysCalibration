@@ -7,7 +7,7 @@ import { getCookie } from '@/utils/cookie.js';
 import Navbar from '@/components/layouts/Navbar.vue';
 import Sidebar from '@/components/layouts/Sidebar.vue';
 
-const { goToRoute } = useNavigation ();
+const { goToRoute } = useNavigation();
 
 const isSidebarOpen = ref(false);
 
@@ -18,21 +18,21 @@ const toggleSidebar = () => {
 
 // 監聽螢幕寬度變化
 const handleResize = () => {
-  isSidebarOpen.value = window.innerWidth >= 1280
-}
+  isSidebarOpen.value = window.innerWidth >= 1280;
+};
 
 onMounted(() => {
   const token = getCookie('token');
 
-  if(!token) {
+  if (!token) {
     useAlert().error('登入過期', '請重新登入');
     goToRoute('companyLogin');
   }
 
-  handleResize()
+  handleResize();
 
   // 畫面寬度監聽器
-  window.addEventListener('resize', handleResize)
+  window.addEventListener('resize', handleResize);
 });
 </script>
 
@@ -42,5 +42,7 @@ onMounted(() => {
     @toggle-sidebar="toggleSidebar"
   />
   <Sidebar :is-sidebar-open="isSidebarOpen" />
-  <RouterView />
+  <main class="bg-primary-50 mt-15 xl:w-3/4 xl:ml-auto">
+    <RouterView />
+  </main>
 </template>

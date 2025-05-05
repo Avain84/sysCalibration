@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-// import HomeView from '../views/HomeView.vue';
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -25,15 +24,15 @@ const router = createRouter({
     {
       path: '/',
       name: 'hasLoginView',
-      // redirect: '/dashboard',
+      redirect: '/dashboard',
       component: () => import('@/components/layouts/SidebarWithNavbar.vue'),
-      // children: [
-      //   {
-      //     path: 'dashboard',
-      //     name: '儀錶板',
-      //     component: () => import('@/views/Dashboard.vue'),
-      //   },
-      // ],
+      children: [
+        {
+          path: 'dashboard',
+          name: '儀錶板',
+          // component: () => import('@/views/dashboard/Index.vue'),
+        },
+      ],
     },
     {
       // 未符合路徑導向廠商登入頁
