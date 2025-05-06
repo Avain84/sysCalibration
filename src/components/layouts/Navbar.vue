@@ -1,6 +1,6 @@
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
-import { useProfileStore } from '@/stores/userProfile.js';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+import apiGetProfile from '@/apis/user/getProfile.js';
 import IconButton from '@/components/buttons/IconButton.vue';
 
 defineProps({
@@ -8,7 +8,11 @@ defineProps({
 });
 defineEmits(['toggleSidebar']);
 
-const useProfile = useProfileStore();
+const userProfile = ref({
+  role: 'company',
+  username: '使用者名稱',
+});
+const isEmployee = ref(false);
 
 const isUserDropdownOpen = ref(false);
 const userDropdownRef = ref(null);
@@ -25,10 +29,21 @@ const handleClickOutside = (e) => {
   }
 };
 
-const isEmployee = computed(() => useProfile.userProfile.role === 'employee');
+const getUserProfile = async () => {
+  try {
+    const res = await apiGetProfile();
+    userProfile.value = res.payload;
+    isEmployee.value = res.payload.role === 'employee';
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-// 監聽點擊事件
 onMounted(() => {
+  // 取得使用者資料
+  getUserProfile();
+
+  // 監聽點擊事件關閉使用者選單
   document.addEventListener('click', handleClickOutside);
 });
 
@@ -95,10 +110,10 @@ onBeforeUnmount(() => {
       <IconButton
         type="button"
         size="sm"
-        :role="useProfile.userProfile.role"
+        :role="userProfile.role"
         rounded="full"
       >
-        <span>{{ useProfile.userProfile.username }}</span>
+        <span>{{ userProfile.username }}</span>
         <img
           src="@/assets/icons/filled-arrow-white.svg"
           alt="arrow"
