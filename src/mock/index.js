@@ -6,3 +6,4 @@ const { mock } = Mock;
 
 // 設定 mock 資料 mock(url, get/post, response data);
 mock('/api/user/login', 'post', user.login);
+mock('/api/user/getProfile', 'post', user.getProfile);

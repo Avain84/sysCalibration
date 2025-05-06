@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getCookie } from '@/utils/cookie.js';
 
 const baseURL = '/api';
 
@@ -6,6 +7,20 @@ const instance = axios.create({
   baseURL,
   timeout: 100000,
 });
+
+// 根據 withToken 決定是否附加 token
+instance.interceptors.request.use(
+  (config) => {
+    if (config.token) {
+      const token = getCookie('token'); // 取得存在 cookie 的 token
+      if (token) {
+        config.headers.Authorization = token;
+      }
+    }
+    return config;
+  },
+  (error) => Promise.reject(error),
+);
 
 // 統一攔截錯誤統一攔截錯誤
 instance.interceptors.response.use(
