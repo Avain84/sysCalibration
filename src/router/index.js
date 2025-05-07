@@ -24,13 +24,18 @@ const router = createRouter({
     {
       path: '/',
       name: 'hasLoginView',
-      redirect: '/dashboard',
+      redirect: '/company-management',
       component: () => import('@/components/layouts/SidebarWithNavbar.vue'),
       children: [
+        // {
+        //   path: 'dashboard',
+        //   name: '儀錶板',
+        //   // component: () => import('@/views/dashboard/Index.vue'),
+        // },
         {
-          path: 'dashboard',
-          name: '儀錶板',
-          // component: () => import('@/views/dashboard/Index.vue'),
+          path: 'company-management',
+          name: '校驗商管理',
+          component: () => import('@/views/companyManagement/Index.vue'),
         },
       ],
     },

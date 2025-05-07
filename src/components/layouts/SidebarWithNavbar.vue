@@ -42,7 +42,7 @@ onMounted(() => {
     @toggle-sidebar="toggleSidebar"
   />
   <Sidebar :is-sidebar-open="isSidebarOpen" />
-  <main class="bg-primary-50 mt-15 xl:w-3/4 xl:ml-auto">
+  <main class="mt-15 xl:w-3/4 xl:ml-auto">
     <RouterView />
   </main>
 </template>
