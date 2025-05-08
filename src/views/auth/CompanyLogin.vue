@@ -7,7 +7,6 @@ import apiLogin from '@/apis/user/login.js';
 import { setCookie } from '@/utils/cookie.js';
 import FormInput from '@/components/inputs/FormInput.vue';
 import Button from '@/components/Button.vue';
-// import Button from '@/components/buttons/BaseButton.vue';
 import LineDivider from '@/components/LineDivider.vue';
 import GoogleLogin from '@/views/auth/GoogleLogin.vue';
 
