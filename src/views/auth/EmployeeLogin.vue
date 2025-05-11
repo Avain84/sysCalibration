@@ -52,6 +52,7 @@ const submitLogin = async (value) => {
         type="email"
         rules="required|email"
         placeholder="請輸入電子信箱"
+        class="min-h-[90px]"
       />
       <FormInput
         id="employeePassword"
@@ -60,6 +61,7 @@ const submitLogin = async (value) => {
         type="password"
         rules="required|min:6|max:10"
         placeholder="請輸入密碼"
+        class="min-h-[90px]"
       />
       <Button
         role="employee"
