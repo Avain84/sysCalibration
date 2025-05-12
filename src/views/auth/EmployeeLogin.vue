@@ -6,7 +6,7 @@ import useNavigation  from '@/composables/useNavigation.js';
 import { setCookie } from '@/utils/cookie.js';
 import apiLogin from '@/apis/user/login.js';
 import FormInput from '@/components/inputs/FormInput.vue';
-import Button from '@/components/buttons/BaseButton.vue';
+import Button from '@/components/Button.vue';
 
 const useProfile = useProfileStore();
 const { goToRoute } = useNavigation ();
@@ -64,8 +64,9 @@ const submitLogin = async (value) => {
         class="min-h-[90px]"
       />
       <Button
+        size="full"
+        rounded="lg"
         role="employee"
-        size="lg"
         :disabled="!meta.valid"
       >
         登入系統

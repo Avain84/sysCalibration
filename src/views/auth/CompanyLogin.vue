@@ -6,7 +6,7 @@ import useNavigation from '@/composables/useNavigation.js';
 import apiLogin from '@/apis/user/login.js';
 import { setCookie } from '@/utils/cookie.js';
 import FormInput from '@/components/inputs/FormInput.vue';
-import Button from '@/components/buttons/BaseButton.vue';
+import Button from '@/components/Button.vue';
 import LineDivider from '@/components/LineDivider.vue';
 import GoogleLogin from '@/views/auth/GoogleLogin.vue';
 
@@ -64,8 +64,9 @@ const submitLogin = async (value) => {
         class="min-h-[90px]"
       />
       <Button
+        size="full"
+        rounded="lg"
         role="company"
-        size="lg"
         :disabled="!meta.valid"
       >
         登入系統
