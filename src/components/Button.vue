@@ -10,44 +10,59 @@ const props = defineProps({
 });
 
 const sizeStyle = computed(() => {
-  switch (props.size) {
-    case 'sm':
-      return 'px-4 py-2 gap-1';
-    case 'md':
-      return 'px-8 py-2 gap-2';
-    case 'lg':
-      return 'px-16 py-3 gap-3';
-    default:
-      return 'py-2 w-full gap-3';
-  }
-});
-const colorStyle = computed(() => {
-  const colorMap = {
-    employee: 'primary',
-    company: 'tertiary',
-    common: 'neutral',
+  const sizeMap = {
+    sm: 'px-4 py-2 gap-1',
+    md: 'px-8 py-2 gap-2',
+    lg: 'px-16 py-3 gap-3',
+    full: 'py-2 w-full gap-3',
   };
 
+  return sizeMap[props.size] || sizeMap.full;
+});
+
+const colorStyle = computed(() => {
+  const themeColors = {
+    employee: {
+      bg: 'bg-primary-30',
+      text: 'text-primary-30',
+      border: 'border-primary-30',
+      hoverBg: 'hover:bg-primary-30',
+      hoverText: 'hover:text-primary-30',
+    },
+    company: {
+      bg: 'bg-tertiary-30',
+      text: 'text-tertiary-30',
+      border: 'border-tertiary-30',
+      hoverBg: 'hover:bg-tertiary-30',
+      hoverText: 'hover:text-tertiary-30',
+    },
+    common: {
+      bg: 'bg-neutral-30',
+      text: 'text-neutral-30',
+      border: 'border-neutral-30',
+      hoverBg: 'hover:bg-neutral-30',
+      hoverText: 'hover:text-neutral-30',
+    },
+  };
+
+  const colors = themeColors[props.role] || themeColors.common;
+
   if (props.filled) {
-    return `bg-${colorMap[props.role]}-30 text-white border-${colorMap[props.role]}-30 hover:bg-white hover:text-${colorMap[props.role]}-30`;
+    return `${colors.bg} text-white ${colors.border} hover:bg-white ${colors.hoverText}`;
   } else {
-    return `bg-white text-${colorMap[props.role]}-30 border-${colorMap[props.role]}-30 hover:bg-${colorMap[props.role]}-30 hover:text-white`;
+    return `bg-white ${colors.text} ${colors.border} ${colors.hoverBg} hover:text-white`;
   }
 });
 
 const roundedStyle = computed(() => {
-  switch (props.rounded) {
-    case 'sm':
-      return 'rounded-sm';
-    case 'md':
-      return 'rounded-md';
-    case 'lg':
-      return 'rounded-lg';
-    case 'full':
-      return 'rounded-full';
-    default:
-      return 'rounded-2xl';
-  }
+  const roundedMap = {
+    sm: 'rounded-sm',
+    md: 'rounded-md',
+    lg: 'rounded-lg',
+    full: 'rounded-full',
+  };
+
+  return roundedMap[props.rounded] || roundedMap.full;
 });
 </script>
 
