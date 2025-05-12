@@ -1,6 +1,6 @@
 <script setup>
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
-import CustomButton from '@/components/CustomButton.vue';
+import Button from '@/components/Button.vue';
 import LineArrow from '@/components/icons/LineArrow.vue';
 import FormInput from '@/components/inputs/FormInput.vue';
 </script>
@@ -11,7 +11,7 @@ import FormInput from '@/components/inputs/FormInput.vue';
       <h2 class="text-h4B xl:text-h3B py-2">校驗商管理</h2>
       <Popover>
         <PopoverButton class="focus:outline-none">
-          <CustomButton
+          <Button
             type="button"
             size="sm"
             role="company"
@@ -19,7 +19,7 @@ import FormInput from '@/components/inputs/FormInput.vue';
           >
             <span>篩選</span>
             <LineArrow />
-          </CustomButton>
+          </Button>
         </PopoverButton>
         <PopoverPanel class="absolute z-10 right-0 left-0 top-16 px-3">
           <VForm
@@ -53,13 +53,13 @@ import FormInput from '@/components/inputs/FormInput.vue';
               rule="required"
               class="col-span-9 md:col-span-3"
             />
-            <CustomButton
+            <Button
               size="md"
               role="company"
               class="col-span-9 md:col-span-2 md:col-end-10 mb-2 self-end"
             >
               搜尋
-            </CustomButton>
+            </Button>
           </VForm>
         </PopoverPanel>
       </Popover>
