@@ -1,13 +1,13 @@
 <script setup>
 import { useProfileStore } from '@/stores/userProfile.js';
 import useAlert from '@/composables/useAlert.js';
-import useNavigation  from '@/composables/useNavigation.js';
+import useNavigation from '@/composables/useNavigation.js';
 import apiLogin from '@/apis/user/login.js';
 import { setCookie } from '@/utils/cookie.js';
-import IconButton from '@/components/buttons/IconButton.vue';
+import Button from '@/components/Button.vue';
 
 const useProfile = useProfileStore();
-const { goToRoute } = useNavigation ();
+const { goToRoute } = useNavigation();
 
 const submitLogin = async (value) => {
   try {
@@ -45,16 +45,17 @@ const callback = (response) => {
 
 <template>
   <GoogleLogin :callback="callback">
-    <IconButton
+    <Button
       size="full"
       rounded="full"
       :filled="false"
+      class="shadow-md"
     >
       <span>Google 登入</span>
       <img
         src="@/assets/icons/google.svg"
         alt="Google icon"
       />
-    </IconButton>
+    </Button>
   </GoogleLogin>
 </template>

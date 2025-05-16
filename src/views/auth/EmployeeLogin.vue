@@ -6,7 +6,7 @@ import useNavigation  from '@/composables/useNavigation.js';
 import { setCookie } from '@/utils/cookie.js';
 import apiLogin from '@/apis/user/login.js';
 import FormInput from '@/components/inputs/FormInput.vue';
-import Button from '@/components/buttons/BaseButton.vue';
+import Button from '@/components/Button.vue';
 
 const useProfile = useProfileStore();
 const { goToRoute } = useNavigation ();
@@ -52,6 +52,7 @@ const submitLogin = async (value) => {
         type="email"
         rules="required|email"
         placeholder="請輸入電子信箱"
+        class="min-h-[90px]"
       />
       <FormInput
         id="employeePassword"
@@ -60,10 +61,12 @@ const submitLogin = async (value) => {
         type="password"
         rules="required|min:6|max:10"
         placeholder="請輸入密碼"
+        class="min-h-[90px]"
       />
       <Button
+        size="full"
+        rounded="lg"
         role="employee"
-        size="lg"
         :disabled="!meta.valid"
       >
         登入系統

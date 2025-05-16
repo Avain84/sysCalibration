@@ -42,7 +42,9 @@ onMounted(() => {
     @toggle-sidebar="toggleSidebar"
   />
   <Sidebar :is-sidebar-open="isSidebarOpen" />
-  <main class="bg-primary-50 mt-15 xl:w-3/4 xl:ml-auto">
-    <RouterView />
+  <main class="container grid grid-cols-12 mx-auto">
+    <div class="xl:col-start-4 col-span-12 xl:col-span-9 mt-15">
+      <RouterView />
+    </div>
   </main>
 </template>

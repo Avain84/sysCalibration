@@ -1,7 +1,8 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import apiGetProfile from '@/apis/user/getProfile.js';
-import IconButton from '@/components/buttons/IconButton.vue';
+import Button from '@/components/Button.vue';
+import FilledArrow from '@/components/icons/FilledArrow.vue';
 
 defineProps({
   isSidebarOpen: Boolean,
@@ -107,19 +108,15 @@ onBeforeUnmount(() => {
       class="relative"
       @click="userDropdownToggle"
     >
-      <IconButton
+      <Button
         type="button"
         size="sm"
-        :role="userProfile.role"
         rounded="full"
+        :role="userProfile.role"
       >
         <span>{{ userProfile.username }}</span>
-        <img
-          src="@/assets/icons/filled-arrow-white.svg"
-          alt="arrow"
-          class="w-2.5 aspect-square"
-        />
-      </IconButton>
+        <FilledArrow />
+      </Button>
       <ul
         v-if="isUserDropdownOpen"
         class="absolute w-32 right-1/6 mt-2 bg-white shadow-md rounded-md border border-neutral-80 overflow-hidden"

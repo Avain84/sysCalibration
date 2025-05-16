@@ -16,7 +16,7 @@ const togglePassword = () => {
 </script>
 
 <template>
-  <div class="mb-2 min-h-[90px] relative">
+  <div class="mb-2 relative">
     <label
       :for="id"
       class="block mb-2 text-h6 text-black"

@@ -35,7 +35,7 @@ const isOpen = (name) => openMenus.value === name;
 
 <template>
   <aside
-    class="top-15 left-0 w-full xl:w-1/4 min-h-full shadow-lg"
+    class="bg-white xl:bg-white/30 z-50 top-15 left-0 w-full xl:w-1/4 min-h-full shadow-lg"
     :class="isSidebarOpen ? 'fixed' : 'hidden'"
   >
     <ul class="p-4">
