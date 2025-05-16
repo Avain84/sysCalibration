@@ -34,7 +34,7 @@ const router = createRouter({
         // },
         {
           path: 'company-management',
-          name: '校驗商管理',
+          name: 'companyManagement',
           component: () => import('@/views/companyManagement/Index.vue'),
         },
       ],
