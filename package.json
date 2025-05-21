@@ -16,6 +16,8 @@
     "@vee-validate/i18n": "^4.15.0",
     "@vee-validate/rules": "^4.15.0",
     "axios": "^1.9.0",
+    "datatables.net-dt": "^2.3.1",
+    "datatables.net-vue3": "^3.0.4",
     "pinia": "^3.0.1",
     "sweetalert2": "^11.19.1",
     "tailwindcss": "^4.1.4",
