@@ -1,15 +1,53 @@
 <script setup>
+import { onMounted, ref, render } from 'vue';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
+import getCompanyList from '@/apis/company/getList.js';
 import Button from '@/components/Button.vue';
 import LineArrow from '@/components/icons/LineArrow.vue';
 import FormInput from '@/components/inputs/FormInput.vue';
 import FormSelect from '@/components/inputs/FormSelect.vue';
+import DataTable from '@/components/DataTable.vue';
+
+const companyList = ref([]);
 
 const options = [
   { text: '全部', value: 'All' },
   { text: '啟用', value: 'Y' },
   { text: '停用', value: 'N' },
 ];
+
+const columns = [
+  {
+    title: '廠商名稱',
+    data: 'username',
+  },
+  {
+    title: '啟用狀態',
+    data: 'status',
+    render: (status) => (status === 'Y' ? '啟用' : '停用'),
+  },
+  {
+    title: '廠商統編',
+    data: 'taxpayerNumber',
+  },
+  {
+    title: '窗口電話',
+    data: 'contactPhone',
+  },
+];
+
+const getList = async () => {
+  try {
+    const res = await getCompanyList();
+    companyList.value = res.payload;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+onMounted(() => {
+  getList();
+});
 </script>
 
 <template>
@@ -74,6 +112,11 @@ const options = [
         </PopoverPanel>
       </Popover>
     </div>
-    <div class="w-full h-full p-3">DataTables</div>
+    <div class="w-full h-full p-3">
+      <DataTable
+        :columns="columns"
+        :data="companyList"
+      />
+    </div>
   </section>
 </template>
