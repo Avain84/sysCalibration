@@ -1,39 +1,6 @@
 import { Random } from 'mockjs';
 import { getCookie } from '@/utils/cookie.js';
-
-// 員工和廠商假資料
-const users = [
-  {
-    account: 'employee01@test.com',
-    username: '員工一',
-    password: 'e01e01',
-    role: 'employee',
-  },
-  {
-    account: 'employee02@test.com',
-    username: '員工二',
-    password: 'e02e02',
-    role: 'employee',
-  },
-  {
-    account: 'company01@test.com',
-    username: '廠商一',
-    password: 'c01c01',
-    role: 'company',
-  },
-  {
-    account: 'company02@test.com',
-    username: '廠商二',
-    password: 'c02c02',
-    role: 'company',
-  },
-  {
-    account: 'company03@test.com',
-    username: '廠商三',
-    password: 'c0303',
-    role: 'company',
-  },
-];
+import users from '@/mock/datas/userDatas.js';
 
 // 登入
 function login(req) {
@@ -74,7 +41,7 @@ function getProfile(req) {
 
   // 找出符合 token 的 使用者
   const matchedUser = users.find((user) => user.token === token);
-  
+
   if (matchedUser) {
     const { account, username, role } = matchedUser;
     return {
